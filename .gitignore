@@ -1,18 +1,24 @@
 # Environnement virtuel Python
 venv/
 .venv/
+<<<<<<< HEAD
 
 venv3.12
 
 Data/
 
+=======
+>>>>>>> e68cb5b36ad4b7b5cf7d9816080cb5ff8a8683ab
 # Cache de configuration VS Code
 .vscode/
 # Fichiers de cache Python
 __pycache__/
 *.pyc
+<<<<<<< HEAD
 
 images/private/
 tmp/
 
  
+=======
+>>>>>>> e68cb5b36ad4b7b5cf7d9816080cb5ff8a8683ab
