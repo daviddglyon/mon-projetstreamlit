@@ -1,0 +1,18 @@
+# Environnement virtuel Python
+venv/
+.venv/
+
+venv3.12
+
+Data/
+
+# Cache de configuration VS Code
+.vscode/
+# Fichiers de cache Python
+__pycache__/
+*.pyc
+
+images/private/
+tmp/
+
+ 
