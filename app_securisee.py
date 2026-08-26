@@ -10,7 +10,7 @@ if "username" not in st.session_state:
 # --- 2. FONCTION DE VÉRIFICATION DES IDENTIFIANTS ---
 @st.cache_data
 def load_accounts():
-    return pd.read_csv("Data\\accounts.csv")
+    return pd.read_csv("accounts.csv")
 def authenticate(username_input, password_input):
     accounts_df = load_accounts()
     # Verification de la correspondance nom d'utilisateur et mot de  passe
