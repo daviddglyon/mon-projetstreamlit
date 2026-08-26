@@ -1,28 +1,26 @@
-# 📦 My Package
+# 📦 Mon package
 
-(add your badges here)
-
-> *Your documentation is a direct reflection of your software, so hold it to the same standards.*
+> *C'est application Web Data avec Streamlit pour animation visuelle. On peut manipuler des jeux de données réels issus du dépôt officiel Seaborn Data, à combiner plusieurs bibliothèques de visualisation (Matplotlib,Seaborn, Plotly) et à exploiter les fonctionnalités natives de Streamlit pour créer un véritable dashboard interactif*
 
 
-## 🌟 Highlights
+## 🌟 Se qu'il faut souligné
 
-- Some functionality made easy!
-- This problem handled
-- etc.
-
-
-## ℹ️ Overview
-
-A paragraph explaining your work, who you are, and why you made it.
+- Le web site simple de trois pages
+- L'analyse de donnée taxis
+- Le page "Diagramme" montre le nombre total de passagers sur la période sélectionnée, et diagrammes par périods
 
 
-### ✍️ Authors
+## ℹ️ Aperçu Général
 
-Mention who you are and link to your GitHub or organization's website.
+Le travail pour tester et aprrendre la création de site avec streamlit. 
 
 
-## 🚀 Usage
+### ✍️ Les Authors
+
+Issue de la formation Simplon 2026, groupe de deux personnes M&D.
+
+
+<!-- ## 🚀 Utilité
 
 *Show off what your software looks like in action! Try to limit it to one-liners if possible and don't delve into API specifics.*
 
@@ -31,23 +29,31 @@ Mention who you are and link to your GitHub or organization's website.
 >>> mypackage.do_stuff()
 'Oh yeah!'
 ```
+ -->
 
 
-## ⬇️ Installation
+## ⬇️ Metre on place
 
-Simple, understandable installation instructions!
+1. Cloné le prejet
+2. Installer et activer envirenment virtuelle 
+    ```bash
+    >>> py -3.12 -m venv venv
+    >>> .\venv\Scripts\activate
+    ```
+4. Installer streamlit
+    ````
+    >>> py -m pip install --upgrade pip
+    >>> pip install streamlit
+    ```
 
-```bash
-pip install my-package
-```
 
-And be sure to specify any other minimum requirements like Python versions or operating systems.
+La version de pyton recomondé 3.12.
 
-*You may be inclined to add development instructions here, don't.*
+* Nous allons ajouter les étapes en suit*
 
 
-## 💭 Feedback and Contributing
+## 💭 Les feedbacks et les Contributing
 
-Add a link to the Discussions tab in your repo and invite users to open issues for bugs/feature requests.
+Nous n'avons pas les liens pour le moment pour les discussion tabs dans notre repo et les invites des  utilisateurs pour ouvrir les issues pour les bugs/feature demandes (requests).
 
-This is also a great place to invite others to contribute in any ways that make sense for your project. Point people to your DEVELOPMENT and/or CONTRIBUTING guides if you have them.
+<!-- This is also a great place to invite others to contribute in any ways that make sense for your project. Point people to your DEVELOPMENT and/or CONTRIBUTING guides if you have them. -->
