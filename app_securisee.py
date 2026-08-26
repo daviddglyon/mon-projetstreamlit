@@ -60,9 +60,10 @@ else:
     if selected_page == "Accueil":
         st.title(" Page d'Accueil Réservée")
         st.write("Ce contenu est uniquement accessible aux utilisateurs authentifiés.")
+        
     elif selected_page == "Dashboard":
-        st.title("Dashboard")
-        st.write("Voici nos Dashboards")   
+        st.title("Dashboard Data Visualisation - Flights")
+
         ## includ dashboard start________________________________________
 
         # 1. Sélection du jeu de données
@@ -74,39 +75,54 @@ else:
             return pd.read_csv(f"https://raw.githubusercontent.com/mwaskom/seaborn-data/refs/heads/master/{ name }.csv")
         df = get_dataset(dataset_name)
 
-        #3. Permettez à l'utilisateur de :
-        # Filtrer les données sur une plage d'années à l'aide d'un st.slider (ex: entre 1949 et 1960).
-        annees = st.slider("plage d'années", min_value=1949, max_value=1960, step=1)
-        # Choisir un mois spécifique via un st.selectbox ou sélectionner tous les mois.
-        mois = st.selectbox("mois: ", ("January","February","March","April","May", "June","July","August","September","October","November","December"))
-        st.write(mois)
+        st.subheader("Aperçu des données")
+        st.dataframe(df.head(10))
+        ordre_mois = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        annee_min, annee_max = st.slider(
+            "Sélectionnez une plage d'années :",
+            min_value=int(df["year"].min()),
+            max_value=int(df["year"].max()),
+            value=(1949, 1960)
+        )
 
-        #4. Affichez :
+        mois_disponibles = ["Tous les mois"] + df["month"].unique().tolist()
+        mois_choisi = st.selectbox("Choisissez un mois :", mois_disponibles)
 
-        ## Un indicateur st.metric montrant le nombre total de passagers sur la période sélectionnée.
-        sel_data = df.loc[(df["year"]==annees) & (df["month"]==mois)]
-        passangers = st.metric(label="le nombre total de passagers sur la période sélectionnée", value=sel_data["passengers"])
+        df_filtre = df[
+            (df["year"] >= annee_min) & (df["year"] <= annee_max)
+        ]
+        if mois_choisi != "Tous les mois":
+            df_filtre = df_filtre[df_filtre["month"] == mois_choisi]
 
-        ## Un graphique évolutif en lignes (st.line_chart ou Plotly) du nombre de passagers au fil des mois/années.
-        passagers_annee= df.loc[(df["year"]==annees)]
-        st.line_chart(passagers_annee["passengers"])
+        total_passagers = df_filtre["passengers"].sum()
+        st.metric(label="Nombre total de passagers", value=f"{total_passagers:,}")
+
+        st.subheader("Évolution du nombre de passagers")
+        evolution = df_filtre.groupby("year")["passengers"].sum()
+        evolution=evolution.reset_index()
+        evolution["year"] = evolution["year"].astype(str)
+        st.line_chart(evolution, x="year", y="passengers")
 
         st.divider()
-
+ 
         ## Une case à cocher (st.checkbox) qui, lorsqu'elle est activée, affiche la Heatmap Seaborn montrant la répartition des passagers par année et par mois (utilisez df.pivot(index='month', columns='year', values='passengers')).
         import plotly.express as px
         import seaborn as sns
-        if st.checkbox("heatmap") :
-            pivot_df = df.pivot(index='month', columns='year', values='passengers')
-            num_cols = pivot_df.select_dtypes(include=['float64','int64']).columns.tolist()
 
-            st.subheader("corrélation")
-            corr = pivot_df[num_cols].corr()
-
+        def heatmap(headertext, pivotdf, isannot):
+            st.subheader(headertext)
             fig_corr, ax_corr = plt.subplots(figsize=(6, 4))
-            
-            sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f",ax=ax_corr)
+            sns.heatmap(pivotdf, annot=isannot, cmap="coolwarm", fmt=".2f",ax=ax_corr) # annot to False
             st.pyplot(fig_corr)
+
+        pivot_df = df.pivot(index='month', columns='year', values='passengers')
+        pivot_df = pivot_df.reindex(ordre_mois)  
+
+        heatmap("Répartition des passagers par année et par mois", pivot_df, False)
+        if st.checkbox("heatmap") :
+            num_cols = pivot_df.select_dtypes(include=['int64']).columns.tolist()
+            corr = pivot_df[num_cols].corr()
+            heatmap("Correlation heatmap", corr, True)
 
         ## includ dashboard end________________________________________
     elif selected_page == "Galerie Photos":
@@ -116,9 +132,9 @@ else:
         # Exemple d'affichage d'images alignées sur 3 colonnes
         cols = st.columns(3)
         sample_images = [
-            "https://static.streamlit.io/examples/cat.jpg",
-            "https://static.streamlit.io/examples/dog.jpg",
-            "https://static.streamlit.io/examples/owl.jpg"
+            "https://images.unsplash.com/photo-1436491865332-7a61a109cc05",
+            "https://images.unsplash.com/photo-1569154941061-e231b4725ef1",
+            "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957"
         ]
         for idx, img_url in enumerate(sample_images):
             with cols[idx % 3]:
