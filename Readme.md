@@ -41,11 +41,10 @@ Issue de la formation Simplon 2026, groupe de deux personnes M&D.
     >>> .\venv\Scripts\activate
     ```
 4. Installer streamlit
-    ````
+    ```
     >>> py -m pip install --upgrade pip
     >>> pip install streamlit
     ```
-
 
 La version de pyton recomondé 3.12.
 
