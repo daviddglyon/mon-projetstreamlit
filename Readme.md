@@ -3,7 +3,7 @@
 > *C'est application Web Data avec Streamlit pour animation visuelle. On peut manipuler des jeux de données réels issus du dépôt officiel Seaborn Data, à combiner plusieurs bibliothèques de visualisation (Matplotlib,Seaborn, Plotly) et à exploiter les fonctionnalités natives de Streamlit pour créer un véritable dashboard interactif*
 
 
-## 🌟 Ce qu'il faut souligné
+## 🌟 Ce qu'il faut souligner
 
 - Le web site simple de trois pages
 - L'analyse de donnée taxis
@@ -34,7 +34,7 @@ Issue de la formation Simplon 2026, groupe de deux personnes M&D.
 
 ## ⬇️ Mettre en place
 
-1. Cloné le prejet
+1. Dupliquer (cloner) le projet
 2. Installer et activer envirenment virtuelle 
     ```bash
     >>> py -3.12 -m venv venv
@@ -43,13 +43,17 @@ Issue de la formation Simplon 2026, groupe de deux personnes M&D.
 4. Installer Requirement.txt (préréquis : libraries python, etc)
     ```
     >>> py -m pip install --upgrade pip
-    >>> pip install streamlit
+    >>> pip install requirements.txt
     ```
 
-5 Lancement de l application Streamlit
+5. Lancement de l application Streamlit
+    ```
+    >>> streamlit run app_securisee.py
+    ```
+
 La version de pyton recomondé 3.12.
 
-*Nous allons ajouter les étapes en suit*
+*Nous allons ajouter les étapes ensuite*
 
 
 ## 💭 Les feedbacks et les Contributions
